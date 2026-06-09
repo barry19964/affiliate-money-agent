@@ -1,0 +1,39 @@
+// ============= Email Notifications Router =============
+
+const notificationsRouter = router({
+  sendDailyReport: publicProcedure
+    .input(z.object({ email: z.string().email(), data: z.any() }))
+    .mutation(async ({ input }) => {
+      const report = calculateRevenueReport(input.data, 'daily');
+      return await sendRevenueEmail(input.email, report, 'report');
+    }),
+
+  sendMilestoneNotification: publicProcedure
+    .input(z.object({ email: z.string().email(), milestone: z.string(), amount: z.number() }))
+    .mutation(async ({ input }) => {
+      return await sendRevenueEmail(input.email, {} as any, 'milestone', {
+        milestone: input.milestone,
+        amount: input.amount
+      });
+    }),
+
+  sendPayoutNotification: publicProcedure
+    .input(z.object({ email: z.string().email(), amount: z.number() }))
+    .mutation(async ({ input }) => {
+      return await sendRevenueEmail(input.email, {} as any, 'payout', {
+        amount: input.amount,
+        date: new Date()
+      });
+    }),
+
+  getRevenueReport: publicProcedure
+    .input(z.object({ period: z.enum(['daily', 'weekly', 'monthly']) }))
+    .query(({ input }) => {
+      const mockData = [
+        { googleAds: 50, email: 100, social: 75, affiliate: 25 },
+        { googleAds: 60, email: 120, social: 90, affiliate: 30 },
+        { googleAds: 55, email: 110, social: 85, affiliate: 28 }
+      ];
+      return calculateRevenueReport(mockData, input.period);
+    }),
+});

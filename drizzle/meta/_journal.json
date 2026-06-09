@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1780297204834,
+      "tag": "0000_productive_rockslide",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1780297372035,
+      "tag": "0001_majestic_lady_ursula",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1780425391482,
+      "tag": "0002_serious_absorbing_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1780474615641,
+      "tag": "0003_smart_spencer_smythe",
+      "breakpoints": true
+    }
+  ]
+}
